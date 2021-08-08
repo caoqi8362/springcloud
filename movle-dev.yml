@@ -1,0 +1,27 @@
+server:
+  port: 9002
+spring :
+  application:
+    name: microservice-movle
+  datasource:
+    #url: jdbc:mysql://192.168.59.55:3306/springcloud?characterEncoding=UTF8
+    url: jdbc:mysql://192.168.59.133:3306/springcloud?characterEncoding=UTF8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+eureka:
+  client:
+    register-with-eureka: true #作为客户端需要注册Eureka
+    fetch-registry: true #作为客户端需要Eureka获取注册信息
+    service-url: #客户端注册地址
+      defaultZone: http://127.0.0.1:8888/eureka,http://127.0.0.1:9999/eureka
+    instance:
+      prefer-ip-address: true  # 有限使用改服务的IP地址注册到Eureka，在实际的生产环境改为true
+#修改Ribbon的负载均衡算法
+#microservice-user:   #修改Ribbon算法的服务名称
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule     #引用算法类的路径(此算法为随机算法)
+#开启Hystrix 熔断器
+feign:
+  hystrix:
+    enabled: true
